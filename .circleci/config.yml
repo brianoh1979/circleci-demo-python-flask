@@ -14,9 +14,9 @@ workflows:
   build-deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
+ #     - deploy:
+ #         requires:
+ #           - build
           filters:
             branches:
               only: master
@@ -26,16 +26,16 @@ workflows:
 ##################
 jobs:
   build:
-    docker:
-      - image: circleci/python:3.6.2-stretch-browsers
-        environment:
-          FLASK_CONFIG: testing
-          TEST_DATABASE_URL: postgresql://ubuntu@localhost/circle_test?sslmode=disable
-      - image: circleci/postgres:9.6.5-alpine-ram
-        environment:
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ''
+    machine: true
+    resource_class: brianoh1979/brian-runner
+    environment:
+    FLASK_CONFIG: testing
+    TEST_DATABASE_URL: postgresql://ubuntu@localhost/circle_test?sslmode=disable
+    #- image: circleci/postgres:9.6.5-alpine-ram
+    POSTGRES_USER: ubuntu
+    POSTGRES_DB: circle_test
+    POSTGRES_PASSWORD: ''
+    
     steps:
       - checkout
       - run: mkdir test-reports

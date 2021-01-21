@@ -42,11 +42,11 @@ jobs:
           background: true
       - restore_cache:
           key: deps2-{{ checksum "requirements/dev.txt" }}
-      - run:
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements/dev.txt --no-binary=:all:
+#      - run:
+#          command: |
+#            python3 -m venv venv
+#            . venv/bin/activate
+#            pip install -r requirements/dev.txt --no-binary=:all:
       - save_cache:
           key: deps2-{{ checksum "requirements/dev.txt" }}
           paths:

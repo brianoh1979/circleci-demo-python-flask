@@ -27,15 +27,7 @@ workflows:
 jobs:
   build:
     machine: true
-    resource_class: brianoh1979/brian-runner
-    environment:
-    FLASK_CONFIG: testing
-    TEST_DATABASE_URL: postgresql://ubuntu@localhost/circle_test?sslmode=disable
-    #- image: circleci/postgres:9.6.5-alpine-ram
-    POSTGRES_USER: ubuntu
-    POSTGRES_DB: circle_test
-    POSTGRES_PASSWORD: ''
-    
+    resource_class: brianoh1979/brian-runner    
     steps:
       - checkout
       - run: mkdir test-reports

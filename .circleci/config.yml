@@ -38,6 +38,8 @@ jobs:
           POSTGRES_PASSWORD: ''
     steps:
       - checkout
+      - run: echo $DISPLAY
+      - run: bash xvfb.sh
       - run: mkdir test-reports
       - run:
           name: Download Selenium
